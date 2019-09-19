@@ -1,5 +1,4 @@
 setInterval(function () {
-    console.log('paint');
     jQuery('.subject:contains(#1)').parents('.field-item').css('background', '#f3ffe3');
     jQuery('.subject:contains(#2)').parents('.field-item').css('background', '#ffffd1');
     jQuery('.subject:contains(#3)').parents('.field-item').css('background', '#c4faf8');
