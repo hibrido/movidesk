@@ -16,16 +16,15 @@ setInterval(function () {
     });
 }, 1000);
 
-//jQuery('body').on('click', '.play-time', function () {
-jQuery('.play-time').on('click', function () {
+jQuery('body').on('click', '.play-time', function () {
     let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
     window.plays = window.plays || {};
+    
+    if (input.val() == '') {
+        input.val('00:00');
+    }
+    
     window.plays[input.attr('id')] = setInterval(function () {
-        if (input.val() == '') {
-            input.val('00:00');
-            return;
-        }
-
         let worked_split = input.val().split(':');
         let worked_minutes = worked_split[0];
         let worked_seconds = worked_split[1];
