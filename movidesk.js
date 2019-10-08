@@ -1,11 +1,9 @@
-
 setInterval(function () {
     jQuery('.subject:contains(#1)').parents('.field-item').css('background', '#f3ffe3');
     jQuery('.subject:contains(#2)').parents('.field-item').css('background', '#ffffd1');
     jQuery('.subject:contains(#3)').parents('.field-item').css('background', '#c4faf8');
     jQuery('.subject:contains(#4)').parents('.field-item').css('background', '#fbe4ff');
     jQuery('.subject:contains(#5)').parents('.field-item').css('background', '#ecd4ff');
-    
     
     jQuery('.ticket-appointments').each(function () {
         if (jQuery(this).find('.appointments-header .play-pause-header').length == 0) {
@@ -16,10 +14,10 @@ setInterval(function () {
             jQuery(this).find('.ticket-appointments-container').prepend('<div class="ticket-appointments-little-container play-pause-content"><div class="mv-input-container time-appointment-date"><button type="button" class="play-time" style="margin-right:10px;padding-top:5px;"><span class="icon-mv-play"></span></button><button type="button" class="pause-time" style="padding-top:5px;"><span class="icon-mv-pause"></span></button></div></div>');
         }
     });
-    
 }, 1000);
 
-jQuery('body').on('click', '.play-time', function () {
+//jQuery('body').on('click', '.play-time', function () {
+jQuery('.play-time').on('click', function () {
     let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
     window.plays = window.plays || {};
     window.plays[input.attr('id')] = setInterval(function () {
