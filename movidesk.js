@@ -39,6 +39,7 @@ jQuery('body').on('click', '.play-time', function () {
         }
 
 		input.val(worked_minutes.toString().padStart(2, '0') +':'+ worked_seconds.toString().padStart(2, '0'));
+		input.trigger('change');
 	}, 1000);
 });
 
