@@ -16,34 +16,32 @@ setInterval(function () {
     });
 }, 1000);
 
-jQuery(window).on('load', function () {
-    jQuery('body').on('click', '.play-time', function () {
-        let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
-        window.plays = window.plays || {};
+jQuery('body').on('click', '.play-time', function () {
+    let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
+    window.plays = window.plays || {};
 
-        if (input.val() == '') {
-            input.val('00:00');
+    if (input.val() == '') {
+        input.val('00:00');
+    }
+
+    window.plays[input.attr('id')] = setInterval(function () {
+        let worked_split = input.val().split(':');
+        let worked_minutes = worked_split[0];
+        let worked_seconds = worked_split[1];
+
+        worked_seconds++;
+
+        if (worked_seconds >= 60) {
+            worked_minutes++;
+            worked_seconds = 0;
         }
 
-        window.plays[input.attr('id')] = setInterval(function () {
-            let worked_split = input.val().split(':');
-            let worked_minutes = worked_split[0];
-            let worked_seconds = worked_split[1];
+        input.val(worked_minutes.toString().padStart(2, '0') +':'+ worked_seconds.toString().padStart(2, '0'));
+        input.trigger('change');
+    }, 60000);
+});
 
-            worked_seconds++;
-
-            if (worked_seconds >= 60) {
-                worked_minutes++;
-                worked_seconds = 0;
-            }
-
-            input.val(worked_minutes.toString().padStart(2, '0') +':'+ worked_seconds.toString().padStart(2, '0'));
-            input.trigger('change');
-        }, 60000);
-    });
-
-    jQuery('body').on('click', '.pause-time', function () {
-        let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
-        clearInterval(window.plays[input.attr('id')]);
-    });
+jQuery('body').on('click', '.pause-time', function () {
+    let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
+    clearInterval(window.plays[input.attr('id')]);
 });
