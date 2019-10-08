@@ -4,4 +4,16 @@ setInterval(function () {
     jQuery('.subject:contains(#3)').parents('.field-item').css('background', '#c4faf8');
     jQuery('.subject:contains(#4)').parents('.field-item').css('background', '#fbe4ff');
     jQuery('.subject:contains(#5)').parents('.field-item').css('background', '#ecd4ff');
+    
+    
+    jQuery('.ticket-appointments').each(function () {
+        if (jQuery(this).find('.appointments-header .play-pause-header').length == 0) {
+            jQuery(this).find('.appointments-header').prepend('<div class="item play-pause-header">Play/Pause</div>');
+        }
+        
+        if (jQuery(this).find('.ticket-appointments-container .play-pause-content').length == 0) {
+            jQuery(this).find('.ticket-appointments-container').prepend('<div class="ticket-appointments-little-container play-pause-content"><div class="mv-input-container time-appointment-date"><button type="button" class="play-time" data-toggle="popover" data-trigger="focus" data-content="Apontamentos" data-original-title="">&gt;</button><button type="button" class="" data-toggle="popover" data-trigger="focus" data-content="Apontamentos" data-original-title="" title="">||</button></div></div>');
+        }
+    });
+    
 }, 1000);
