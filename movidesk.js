@@ -17,3 +17,28 @@ setInterval(function () {
     });
     
 }, 1000);
+
+jQuery('body').on('click', '.play-time', function () {
+    let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
+	window.plays = window.plays || {};
+	window.plays[input.attr('id')] = setInterval(function () {
+		if (input.val() == '') {
+            input.val('00:00');
+			return;
+        }
+
+		let worked_split = input.val().split(':');
+		let worked_minutes = worked_split[0];
+		let worked_seconds = worked_split[1];
+
+		worked_seconds++;
+
+		if (worked_seconds >= 60) {
+			worked_minutes++;
+			worked_seconds = 0;
+        }
+
+		input.val(worked_minutes.toString().padStart(2, '0') +':'+ worked_seconds.toString().padStart(2, '0'));
+	}, 1000);
+});
+
