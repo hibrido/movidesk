@@ -12,20 +12,20 @@ setInterval(function () {
         }
         
         if (jQuery(this).find('.ticket-appointments-container .play-pause-content').length == 0) {
-            jQuery(this).find('.ticket-appointments-container').prepend('<div class="ticket-appointments-little-container play-pause-content"><div class="mv-input-container time-appointment-date"><button type="button" class="play-time" data-toggle="popover" data-trigger="focus" data-content="Apontamentos" data-original-title="">&gt;</button><button type="button" class="" data-toggle="popover" data-trigger="focus" data-content="Apontamentos" data-original-title="" title="">||</button></div></div>');
+            jQuery(this).find('.ticket-appointments-container').prepend('<div class="ticket-appointments-little-container play-pause-content"><div class="mv-input-container time-appointment-date"><button type="button" class="play-time" data-toggle="popover" data-trigger="focus" data-content="Apontamentos" data-original-title="">&gt;</button><button type="button" class="pause-time" data-toggle="popover" data-trigger="focus" data-content="Apontamentos" data-original-title="" title="">||</button></div></div>');
         }
     });
     
 }, 1000);
 
 jQuery('body').on('click', '.play-time', function () {
-    let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
+	let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
 	window.plays = window.plays || {};
 	window.plays[input.attr('id')] = setInterval(function () {
 		if (input.val() == '') {
-            input.val('00:00');
+			input.val('00:00');
 			return;
-        }
+		}
 
 		let worked_split = input.val().split(':');
 		let worked_minutes = worked_split[0];
@@ -42,3 +42,7 @@ jQuery('body').on('click', '.play-time', function () {
 	}, 1000);
 });
 
+jQuery('body').on('click', '.pause-time', function () {
+	let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
+	clearInterval(window.plays[input.attr('id')]);
+});
