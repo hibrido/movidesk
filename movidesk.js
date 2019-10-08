@@ -16,7 +16,7 @@ setInterval(function () {
     });
 }, 1000);
 
-jQuery(document).ready(function () {
+jQuery(window).on('load', function () {
     jQuery('body').on('click', '.play-time', function () {
         let input = jQuery(this).parents('.ticket-appointments').find('.time-appointment-time input');
         window.plays = window.plays || {};
